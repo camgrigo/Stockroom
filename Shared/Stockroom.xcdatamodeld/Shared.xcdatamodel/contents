@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17707" systemVersion="20B29" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="LiteratureItem" representedClassName="LiteratureItem" syncable="YES" codeGenerationType="class">
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="symbol" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LiteratureItemCategory" inverseName="items" inverseEntity="LiteratureItemCategory"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LiteratureOrder" inverseName="item" inverseEntity="LiteratureOrder"/>
+    </entity>
+    <entity name="LiteratureItemCategory" representedClassName="LiteratureItemCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="quantityPerGrouping" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LiteratureItem" inverseName="category" inverseEntity="LiteratureItem"/>
+    </entity>
+    <entity name="LiteratureOrder" representedClassName="LiteratureOrder" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isRecurring" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="recipient" optional="YES" attributeType="String"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LiteratureItem" inverseName="orders" inverseEntity="LiteratureItem"/>
+    </entity>
+    <elements>
+        <element name="LiteratureItem" positionX="-11.64105224609375" positionY="16.32977294921875" width="128" height="133"/>
+        <element name="LiteratureItemCategory" positionX="-8.15008544921875" positionY="194.8926696777344" width="128" height="88"/>
+        <element name="LiteratureOrder" positionX="-222.6234130859375" positionY="16.900146484375" width="128" height="118"/>
+    </elements>
+</model>
