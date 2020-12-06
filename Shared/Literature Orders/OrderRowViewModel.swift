@@ -7,19 +7,6 @@
 
 import Foundation
 
-extension LiteratureOrder {
-    
-    static var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        
-        formatter.dateStyle = .short
-        formatter.timeStyle = .none
-        
-        return formatter
-    }
-    
-}
-
 class OrderRowViewModel: NSObject {
     
     let title: String

@@ -20,20 +20,22 @@ struct OrdersView: View {
     private var orders: FetchedResults<LiteratureOrder>
     
     private var items: Dictionary<String, [LiteratureOrder]> {
-        switch grouping {
-        case .requestDate:
-            return Dictionary(grouping: orders) {
+        Dictionary(grouping: orders) { order in
+            switch grouping {
+            case .requestDate:
                 let dateFormatter = DateFormatter()
                 
                 dateFormatter.dateStyle = .medium
                 dateFormatter.timeStyle = .none
                 
-                return dateFormatter.string(from: $0.date!)
+                return dateFormatter.string(from: order.date!)
+                
+            case .recipient:
+                return order.recipient!
+                
+            case .item:
+                return order.item!.title!
             }
-        case .recipient:
-            return Dictionary(grouping: orders) { $0.recipient! }
-        case .item:
-            return Dictionary(grouping: orders) { $0.item!.title! }
         }
     }
     
@@ -44,22 +46,6 @@ struct OrdersView: View {
     
     @State private var isShowingNewOrderSheet = false
     
-    
-    enum Grouping: CaseIterable {
-        case requestDate, recipient, item
-        
-        var title: String {
-            switch self {
-            case .requestDate:
-                return "Most to Least Recent"
-            case .recipient:
-                return "Recipients"
-            case .item:
-                return "Items"
-            }
-        }
-    }
-    
     @State private var grouping = Grouping.requestDate
     
     
@@ -68,6 +54,8 @@ struct OrdersView: View {
             if items.count > 0 {
                 ScrollView {
                     LazyVStack {
+                        ViewMenu(grouping: $grouping)
+                        
                         switch grouping {
                         case .requestDate:
                             AnyView(OrdersListRequestDateView(items: items))
@@ -90,24 +78,10 @@ struct OrdersView: View {
         }
         .navigationTitle(navigationTitle)
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                AddButton(action: addItem)
-                    .sheet(isPresented: $isShowingNewOrderSheet) {
-                        NewOrderView(isShowing: $isShowingNewOrderSheet)
-                    }
-            }
-            ToolbarItem(placement: ToolbarItemPlacement.navigation) {
-                Menu {
-                    Picker(selection: $grouping, label: Text("View")) {
-                        ForEach(Grouping.allCases, id: \.self) {
-                            Text($0.title)
-                        }
-                    }
+            AddButton(action: addItem)
+                .sheet(isPresented: $isShowingNewOrderSheet) {
+                    NewOrderView(isShowing: $isShowingNewOrderSheet)
                 }
-                label: {
-                    Label("View", systemImage: "rectangle.grid.1x2")
-                }
-            }
         }
     }
     
@@ -125,6 +99,55 @@ struct OrdersView: View {
     //            PersistenceController.save(viewContext)
     //        }
     //    }
+    
+}
+
+extension OrdersView {
+    
+    enum Grouping: CaseIterable {
+        case requestDate, recipient, item
+        
+        var title: String {
+            switch self {
+            case .requestDate:
+                return "Most to Least Recent"
+            case .recipient:
+                return "Recipients"
+            case .item:
+                return "Items"
+            }
+        }
+    }
+    
+}
+
+extension OrdersView {
+    
+    struct ViewMenu: View {
+        
+        @Binding var grouping: OrdersView.Grouping
+        
+        var body: some View {
+            Menu {
+                Picker(selection: $grouping, label: Text("View")) {
+                    ForEach(Grouping.allCases, id: \.self) {
+                        Text($0.title)
+                    }
+                }
+            }
+            label: {
+                HStack {
+                    Label("View", systemImage: "rectangle.grid.2x2")
+                    Spacer()
+                    Text(grouping.title).animation(nil)
+                }
+                    .padding()
+                    .background(Color.blue.opacity(0.15).cornerRadius(15))
+                    .padding()
+            }
+        }
+        
+    }
     
 }
 

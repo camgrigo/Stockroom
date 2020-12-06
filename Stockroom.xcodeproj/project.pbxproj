@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C115A174257CA56C00F26EDE /* OrdersListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A173257CA56C00F26EDE /* OrdersListViews.swift */; };
 		C115A175257CA56C00F26EDE /* OrdersListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A173257CA56C00F26EDE /* OrdersListViews.swift */; };
+		C115A18B257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A18A257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift */; };
+		C115A18C257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A18A257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift */; };
 		C1298D602564D2B300298A55 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1298D5F2564D2B300298A55 /* OrdersView.swift */; };
 		C1298D612564D2B300298A55 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1298D5F2564D2B300298A55 /* OrdersView.swift */; };
 		C1298D672564DD0200298A55 /* LiteratureItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1298D662564DD0200298A55 /* LiteratureItemCell.swift */; };
@@ -29,8 +31,6 @@
 		C1530FDE25639D6100BC4C8C /* SquishableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1530FDC25639D6100BC4C8C /* SquishableButtonStyle.swift */; };
 		C15568DA257078F4004765EB /* OrderDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15568D9257078F4004765EB /* OrderDraft.swift */; };
 		C15568DB257078F4004765EB /* OrderDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15568D9257078F4004765EB /* OrderDraft.swift */; };
-		C15E24AA256E2E9E008CDE08 /* ItemLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E24A9256E2E9E008CDE08 /* ItemLibraryButton.swift */; };
-		C15E24AB256E2E9E008CDE08 /* ItemLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15E24A9256E2E9E008CDE08 /* ItemLibraryButton.swift */; };
 		C174B264257371A400A199A0 /* QuantityStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1899D492573708B00B1FE04 /* QuantityStepper.swift */; };
 		C174B265257371A400A199A0 /* QuantityStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1899D492573708B00B1FE04 /* QuantityStepper.swift */; };
 		C181A608257B60CC00236AA9 /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ABBF08257B539D00CD0C43 /* OrdersList.swift */; };
@@ -88,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		C115A173257CA56C00F26EDE /* OrdersListViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListViews.swift; sourceTree = "<group>"; };
+		C115A18A257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiteratureOrder+Extensions.swift"; sourceTree = "<group>"; };
 		C1298D5F2564D2B300298A55 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		C1298D662564DD0200298A55 /* LiteratureItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureItemCell.swift; sourceTree = "<group>"; };
 		C1298D6D2565A3E100298A55 /* NewLiteratureItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLiteratureItemView.swift; sourceTree = "<group>"; };
@@ -99,7 +100,6 @@
 		C1530FDC25639D6100BC4C8C /* SquishableButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquishableButtonStyle.swift; sourceTree = "<group>"; };
 		C15568D425706CD9004765EB /* Stockroom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Stockroom.entitlements; sourceTree = "<group>"; };
 		C15568D9257078F4004765EB /* OrderDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDraft.swift; sourceTree = "<group>"; };
-		C15E24A9256E2E9E008CDE08 /* ItemLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLibraryButton.swift; sourceTree = "<group>"; };
 		C1899D492573708B00B1FE04 /* QuantityStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityStepper.swift; sourceTree = "<group>"; };
 		C18A0B942578D7CF00913CB3 /* LiteratureItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureItemDetail.swift; sourceTree = "<group>"; };
 		C18A0B992578D8CB00913CB3 /* LiteratureItemForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureItemForm.swift; sourceTree = "<group>"; };
@@ -180,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				C18A8810256E3570002A1E5E /* Literature Item */,
-				C15E24A9256E2E9E008CDE08 /* ItemLibraryButton.swift */,
 				C1A7EBDC256327E300740389 /* ItemLibraryView.swift */,
 				C1298D662564DD0200298A55 /* LiteratureItemCell.swift */,
 				C18A8836256E3617002A1E5E /* LiteratureItemCellViewModel.swift */,
@@ -204,6 +203,7 @@
 			children = (
 				C1A7EBDD256327E300740389 /* Persistence.swift */,
 				C18A882B256E35C0002A1E5E /* LiteratureItem+Extensions.swift */,
+				C115A18A257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift */,
 			);
 			path = "Persistent Store";
 			sourceTree = "<group>";
@@ -477,6 +477,7 @@
 				C147F5E3257421230006E85E /* ShipmentsView.swift in Sources */,
 				C115A174257CA56C00F26EDE /* OrdersListViews.swift in Sources */,
 				C1298D672564DD0200298A55 /* LiteratureItemCell.swift in Sources */,
+				C115A18B257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift in Sources */,
 				C1298D6E2565A3E100298A55 /* NewLiteratureItemView.swift in Sources */,
 				C133BD9C2574785F00ACF30E /* Buttons.swift in Sources */,
 				C12A96FE2573759B001F6F8F /* LiteratureItemPicker.swift in Sources */,
@@ -491,7 +492,6 @@
 				C1A7EC07256327E800740389 /* StockroomApp.swift in Sources */,
 				C18A882C256E35C0002A1E5E /* LiteratureItem+Extensions.swift in Sources */,
 				C1298D602564D2B300298A55 /* OrdersView.swift in Sources */,
-				C15E24AA256E2E9E008CDE08 /* ItemLibraryButton.swift in Sources */,
 				C1DD372E2566413900AEC7A6 /* OrderRow.swift in Sources */,
 				C1530FD625639BF700BC4C8C /* ListDefaultView.swift in Sources */,
 				C15568DA257078F4004765EB /* OrderDraft.swift in Sources */,
@@ -511,6 +511,7 @@
 				C147F5E4257421230006E85E /* ShipmentsView.swift in Sources */,
 				C115A175257CA56C00F26EDE /* OrdersListViews.swift in Sources */,
 				C1298D682564DD0200298A55 /* LiteratureItemCell.swift in Sources */,
+				C115A18C257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift in Sources */,
 				C1298D6F2565A3E100298A55 /* NewLiteratureItemView.swift in Sources */,
 				C133BD9D2574785F00ACF30E /* Buttons.swift in Sources */,
 				C12A96FF2573759B001F6F8F /* LiteratureItemPicker.swift in Sources */,
@@ -525,7 +526,6 @@
 				C1A7EC08256327E800740389 /* StockroomApp.swift in Sources */,
 				C18A882D256E35C0002A1E5E /* LiteratureItem+Extensions.swift in Sources */,
 				C1298D612564D2B300298A55 /* OrdersView.swift in Sources */,
-				C15E24AB256E2E9E008CDE08 /* ItemLibraryButton.swift in Sources */,
 				C1DD372F2566413900AEC7A6 /* OrderRow.swift in Sources */,
 				C1530FD725639BF700BC4C8C /* ListDefaultView.swift in Sources */,
 				C15568DB257078F4004765EB /* OrderDraft.swift in Sources */,

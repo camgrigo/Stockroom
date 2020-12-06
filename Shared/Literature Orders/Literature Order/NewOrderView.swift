@@ -28,8 +28,8 @@ struct NewOrderViewToolbar: ToolbarContent {
         
         ToolbarItem(placement: .confirmationAction) {
             Button("Done") {
-                done()
                 isShowing = false
+                done()
             }
             .disabled(!formIsValid)
         }
@@ -38,11 +38,6 @@ struct NewOrderViewToolbar: ToolbarContent {
 }
 
 struct NewOrderView: View {
-    
-    enum Mode {
-        case itemPicker, orderEditor
-    }
-    
     
     @Binding var isShowing: Bool
     
@@ -54,65 +49,51 @@ struct NewOrderView: View {
     
     private let navigationTitle = "Record An Order"
     
-    @State private var mode = Mode.itemPicker
+    @State private var isShowingItemPicker = true
+    
     
     var body: some View {
         NavigationView {
-            VStack {
-                if mode == .itemPicker {
-                    LiteratureItemPicker(mode: $mode, orderDraft: orderDraft)
-                        .opacity(mode == .itemPicker ? 1 : 0)
+            form
+                .navigationTitle(navigationTitle)
+                .toolbar {
+                    NewOrderViewToolbar(isShowing: $isShowing, formIsValid: orderDraft.isValid, done: done)
                 }
-                if mode == .orderEditor {
-                    form
-                        .opacity(mode == .orderEditor ? 1 : 0)
-                }
-                Spacer()
-            }
-            .navigationTitle(navigationTitle)
-            .toolbar {
-                NewOrderViewToolbar(isShowing: $isShowing, formIsValid: orderDraft.isValid, done: done)
-            }
         }
     }
     
     private var form: some View {
         Form {
             Section {
-                Button {
-                    withAnimation {
-                        mode = .itemPicker
-                    }
-                } label: {
-                    if let item = orderDraft.literatureItem {
-                        HStack {
-                                LiteratureItemCell(model: LiteratureItemCellViewModel(literatureItem: item))
-                                    .foregroundColor(.primary)
-                                Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.secondary)
-                        }
-                        
-                    } else {
-                        Text("Choose item…")
-                    }
-                }
-                QuantityStepper(orderDraft: orderDraft)
+                DatePicker("Date", selection: $orderDraft.date)
+                RecipientRow(text: $orderDraft.recipient)
+                Toggle("Repeats Every Month", isOn: $orderDraft.isRecurring)
             }
             Section {
-                DatePicker("Date", selection: $orderDraft.date)
-                HStack {
-                    Text("Recipient")
-                        .font(.headline)
-                        .padding(.trailing)
-                    #if os(iOS)
-                    TextField("Name", text: $orderDraft.recipient)
-                        .autocapitalization(.words)
-                    #else
-                    TextField("Name", text: $orderDraft.recipient)
-                    #endif
+                Button {
+                    withAnimation {
+                        isShowingItemPicker.toggle()
+                    }
+                } label: {
+                    HStack {
+                        if let item = orderDraft.literatureItem {
+                            LiteratureItemCell(model: LiteratureItemCellViewModel(literatureItem: item))
+                                .foregroundColor(.primary)
+                        } else {
+                            Text(isShowingItemPicker ? "Close" : "Choose Item…")
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .rotationEffect(isShowingItemPicker ? .degrees(90) : .degrees(.zero))
+                            .foregroundColor(.secondary)
+                    }
                 }
-                Toggle("Standing Request", isOn: $orderDraft.isRecurring)
+
+                if isShowingItemPicker {
+                    LiteratureItemPicker(isShowingItemPicker: $isShowingItemPicker, orderDraft: orderDraft)
+                }
+                
+                QuantityStepper(orderDraft: orderDraft)
             }
         }
     }
@@ -122,6 +103,25 @@ struct NewOrderView: View {
             _ = orderDraft.managedObject(context: viewContext)
             PersistenceController.save(viewContext)
         }
+    }
+    
+    
+    struct RecipientRow: View {
+        
+        @Binding var text: String
+        
+        var body: some View {
+            HStack(spacing: 12) {
+                Text("Recipient")
+                
+                #if os(iOS)
+                TextField("Name", text: $text).autocapitalization(.words)
+                #else
+                TextField("Name", text: $text)
+                #endif
+            }
+        }
+        
     }
     
 }

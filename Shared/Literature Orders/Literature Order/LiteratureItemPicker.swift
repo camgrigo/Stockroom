@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LiteratureItemPicker: View {
     
-    @Binding var mode: NewOrderView.Mode
+    @Binding var isShowingItemPicker: Bool
     
     @ObservedObject var orderDraft: OrderDraft
     
@@ -28,10 +28,10 @@ struct LiteratureItemPicker: View {
         List {
             ForEach(literatureItems) { item in
                 Button {
-                        withAnimation {
-                            orderDraft.literatureItem = item
-                            mode = .orderEditor
-                        }
+                    withAnimation {
+                        orderDraft.literatureItem = item
+                        isShowingItemPicker = false
+                    }
                 } label: {
                     HStack {
                         LiteratureItemCell(model: LiteratureItemCellViewModel(literatureItem: item))

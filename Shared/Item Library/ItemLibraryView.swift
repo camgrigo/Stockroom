@@ -26,6 +26,7 @@ struct ItemLibraryView<Cell: View>: View {
     
     let cellProvider: (LiteratureItem) -> Cell
     
+    
     var body: some View {
         Group {
             if items.count > 0 {

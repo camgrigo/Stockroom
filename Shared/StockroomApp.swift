@@ -10,6 +10,76 @@ import SwiftUI
 @main
 struct StockroomApp: App {
     
+    let persistenceController = PersistenceController.shared
+    
+    @State private var selectedTab = Tab.orders
+    
+    var body: some Scene {
+        WindowGroup {
+            CustomTabView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+        }
+    }
+    
+}
+
+struct CustomTabView: View {
+    
+    typealias Tab = StockroomApp.Tab // TODO: Remove hardcoded typealias
+    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    @State private var selectedTab = Tab.orders
+    
+    
+    private var tabView: some View {
+        TabView {
+            ForEach(Tab.allCases, id: \.self) { tab in
+                NavigationView {
+                    tab.view
+                }
+                .tabItem {
+                    Group {
+                        Image(systemName: tab.systemImage)
+                        Text(tab.title)
+                    }
+                }
+            }
+        }
+    }
+    
+    private var sidebarView: some View {
+        NavigationView {
+            List(Tab.allCases, id: \.self) { tab in
+                Label(tab.title, systemImage: tab.systemImage)
+                    .onTapGesture { selectedTab = tab }
+            }
+            .listStyle(SidebarListStyle())
+            .navigationTitle("Stockroom")
+            
+            selectedTab.view
+            
+            Text("Content")
+        }
+    }
+    
+    var body: some View {
+        #if os(iOS)
+        switch horizontalSizeClass {
+        case .compact:
+            tabView
+        default:
+            sidebarView
+        }
+        #else
+        sidebarView
+        #endif
+    }
+    
+}
+
+extension StockroomApp {
+    
     enum Tab: CaseIterable {
         
         case orders, itemLibrary, shipments
@@ -55,45 +125,6 @@ struct StockroomApp: App {
             }
         }
         
-    }
-    
-    let persistenceController = PersistenceController.shared
-    
-    @State private var selectedTab = Tab.orders
-    
-    var body: some Scene {
-        WindowGroup {
-            #if os(iOS)
-            TabView {
-                ForEach(Tab.allCases, id: \.self) { tab in
-                    NavigationView {
-                        tab.view
-                    }
-                    .tabItem {
-                        Group {
-                            Image(systemName: tab.systemImage)
-                            Text(tab.title)
-                        }
-                    }
-                }
-            }
-            .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            #else
-            NavigationView {
-                List(Tab.allCases, id: \.self) { tab in
-                    Label(tab.title, systemImage: tab.systemImage)
-                        .onTapGesture { selectedTab = tab }
-                }
-                .listStyle(SidebarListStyle())
-                .navigationTitle("Stockroom")
-                
-                selectedTab.view
-                
-                Text("Content")
-            }
-            .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            #endif
-        }
     }
     
 }
