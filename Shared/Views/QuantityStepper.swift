@@ -9,21 +9,24 @@ import SwiftUI
 
 struct QuantityStepper: View {
     
-    @ObservedObject var orderDraft: OrderDraft
+    let title = "Quantity"
+    
+    @Binding var value: Int
+    
+    let step: Int
     
     private let range = 1...Int(Int32.max - 1)
     
     
     var body: some View {
-        Stepper(value: $orderDraft.quantity, in: range, step: orderDraft.interval) {
-            TextField(
-                "Quantity",
+        Stepper(value: $value, in: range, step: step) {
+            TextField(title,
                 text: Binding {
-                    String(orderDraft.quantity)
+                    String(value)
                 } set: {
                     if let newValue = Int($0),
                        range.contains(newValue) {
-                        orderDraft.quantity = newValue
+                        value = newValue
                     }
                 }
             )
@@ -31,9 +34,3 @@ struct QuantityStepper: View {
     }
     
 }
-
-//struct QuantityStepper_Previews: PreviewProvider {
-//    static var previews: some View {
-//        QuantityStepper()
-//    }
-//}

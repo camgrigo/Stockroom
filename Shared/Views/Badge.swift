@@ -11,26 +11,31 @@ struct Badge: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    
     let text: Text
     
+    let cornerRadius: CGFloat
     
-    @State private var cornerRadius: CGFloat = 10
+    let color: Color
     
-    @State private var backgroundColor: Color = {
-        #if os(iOS)
-        return Color(.secondarySystemFill)
-        #else
-        return Color.secondary
-        #endif
-    }()
+    
+    init (color: Color? = nil, cornerRadius: CGFloat = 10, text: () -> Text) {
+        self.color = color ?? {
+            #if os(iOS)
+            return Color(.secondarySystemFill)
+            #else
+            return Color.secondary
+            #endif
+        }()
+        self.cornerRadius = cornerRadius
+        self.text = text()
+    }
     
     
     private let font = Font.system(.subheadline, design: .rounded).weight(.heavy)
     
     private var background: some View {
         LinearGradient(
-            gradient: Gradient(colors: [backgroundColor, backgroundColor.opacity(0.3)]),
+            gradient: Gradient(colors: [color, color.opacity(0.3)]),
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
@@ -52,23 +57,6 @@ struct Badge: View {
                 .padding(4)
                 .background(background)
         }
-    }
-    
-    func backgroundColor(_ color: Color) -> some View {
-        self.backgroundColor = color
-        
-        return self
-    }
-    
-    func cornerRadius(_ value: CGFloat) -> some View {
-        self.cornerRadius = value
-        
-        return self
-    }
-    
-    
-    init(text: () -> Text) {
-        self.text = text()
     }
     
 }
