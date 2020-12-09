@@ -40,25 +40,40 @@ struct OrdersView: View {
     @State private var searchText = String()
     
     var sections: [(title: String, items: [LiteratureOrder])] {
-        Dictionary(grouping: orders) { order in
-            switch grouping {
-            case .requestDate:
-                let dateFormatter = DateFormatter()
-                
-                dateFormatter.dateStyle = .medium
-                dateFormatter.timeStyle = .none
-                
-                return dateFormatter.string(from: order.date!)
-                
-            case .recipient:
-                return order.recipient!
-                
-            case .item:
-                return order.item!.title!
+        switch grouping {
+        case .requestDate:
+            return Dictionary(grouping: orders) { $0.date! }
+            .sorted { $0.0 > $1.0 }
+                .map { pair in (title: {
+                        let dateFormatter = DateFormatter()
+                        
+                        dateFormatter.dateStyle = .medium
+                        dateFormatter.timeStyle = .none
+                        
+                    return dateFormatter.string(from: pair.0)
+                }(), items: pair.1) }
+            
+        default:
+            return Dictionary(grouping: orders) { order in
+                switch grouping {
+                case .requestDate:
+                    let dateFormatter = DateFormatter()
+                    
+                    dateFormatter.dateStyle = .medium
+                    dateFormatter.timeStyle = .none
+                    
+                    return dateFormatter.string(from: order.date!)
+                    
+                case .recipient:
+                    return order.recipient!
+                    
+                case .item:
+                    return order.item!.title!
+                }
             }
+            .sorted { $0.0 < $1.0 }
+            .map { (title: $0.0, items: $0.1) }
         }
-        .sorted { $0.0 < $1.0 }
-        .map { (title: $0.0, items: $0.1) }
     }
     
     
@@ -113,7 +128,7 @@ extension OrdersView {
         var title: String {
             switch self {
             case .requestDate:
-                return "Most to Least Recent"
+                return "Recently Added"
             case .recipient:
                 return "Recipients"
             case .item:
@@ -135,8 +150,10 @@ extension OrdersView {
         var body: some View {
             Menu {
                 Section {
-                    Button(action: { modalManager.isShowingNewOrderSheet = true }) {
-                        Label("New Order", systemImage: "rectangle.badge.plus")
+                    Button {
+                        modalManager.isShowingNewOrderSheet = true
+                    } label: {
+                        Label("New Order", systemImage: "square.and.pencil")
                     }
                 }
                 
@@ -151,14 +168,6 @@ extension OrdersView {
             label: {
                 Label("Menu", systemImage: "ellipsis.circle")
                     .imageScale(.large)
-                //                HStack {
-                //                    Label("View", systemImage: "rectangle.grid.2x2")
-                //                    Spacer()
-                //                    Text(grouping.title).animation(nil)
-                //                }
-                //                .padding()
-                //                .background(Color.blue.opacity(0.15).cornerRadius(15))
-                //                .padding()
             }
         }
         

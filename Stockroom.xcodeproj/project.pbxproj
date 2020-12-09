@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C115A174257CA56C00F26EDE /* OrdersListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A173257CA56C00F26EDE /* OrdersListViews.swift */; };
-		C115A175257CA56C00F26EDE /* OrdersListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A173257CA56C00F26EDE /* OrdersListViews.swift */; };
+		C115A174257CA56C00F26EDE /* OrdersListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A173257CA56C00F26EDE /* OrdersListSection.swift */; };
+		C115A175257CA56C00F26EDE /* OrdersListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A173257CA56C00F26EDE /* OrdersListSection.swift */; };
 		C115A18B257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A18A257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift */; };
 		C115A18C257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115A18A257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift */; };
+		C11C0E8F257F53BB002C104E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11C0E8E257F53BB002C104E /* SearchBar.swift */; };
+		C11C0E90257F53BB002C104E /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11C0E8E257F53BB002C104E /* SearchBar.swift */; };
 		C1298D602564D2B300298A55 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1298D5F2564D2B300298A55 /* OrdersView.swift */; };
 		C1298D612564D2B300298A55 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1298D5F2564D2B300298A55 /* OrdersView.swift */; };
 		C1298D672564DD0200298A55 /* LiteratureItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1298D662564DD0200298A55 /* LiteratureItemCell.swift */; };
@@ -33,8 +35,6 @@
 		C15568DB257078F4004765EB /* OrderDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15568D9257078F4004765EB /* OrderDraft.swift */; };
 		C174B264257371A400A199A0 /* QuantityStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1899D492573708B00B1FE04 /* QuantityStepper.swift */; };
 		C174B265257371A400A199A0 /* QuantityStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1899D492573708B00B1FE04 /* QuantityStepper.swift */; };
-		C181A608257B60CC00236AA9 /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ABBF08257B539D00CD0C43 /* OrdersList.swift */; };
-		C181A609257B60CC00236AA9 /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ABBF08257B539D00CD0C43 /* OrdersList.swift */; };
 		C18A0B9A2578D8D500913CB3 /* LiteratureItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A0B992578D8CB00913CB3 /* LiteratureItemForm.swift */; };
 		C18A0B9B2578D8D500913CB3 /* LiteratureItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A0B992578D8CB00913CB3 /* LiteratureItemForm.swift */; };
 		C18A0B9C2578D8D500913CB3 /* LiteratureItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A0B942578D7CF00913CB3 /* LiteratureItemDetail.swift */; };
@@ -59,8 +59,12 @@
 		C1AD2A16257B6CFB002C9B93 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD2A14257B6CFB002C9B93 /* Badge.swift */; };
 		C1AE25452572373A009DBC44 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1AE25442572373A009DBC44 /* CloudKit.framework */; };
 		C1AE25472572374A009DBC44 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1AE25462572374A009DBC44 /* CloudKit.framework */; };
+		C1AE834E257D880200BC556A /* StockroomApp+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AE834D257D880200BC556A /* StockroomApp+Tabs.swift */; };
+		C1AE834F257D880200BC556A /* StockroomApp+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AE834D257D880200BC556A /* StockroomApp+Tabs.swift */; };
 		C1B673432565FFC3007276B4 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B673422565FFC3007276B4 /* IconPicker.swift */; };
 		C1B673442565FFC3007276B4 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B673422565FFC3007276B4 /* IconPicker.swift */; };
+		C1BFBCA72580AE7D00BD3EB4 /* OverscrollSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFBCA62580AE7D00BD3EB4 /* OverscrollSpacer.swift */; };
+		C1BFBCA82580AE7D00BD3EB4 /* OverscrollSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFBCA62580AE7D00BD3EB4 /* OverscrollSpacer.swift */; };
 		C1C0562F257422AF00577241 /* OrderRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C056262574223F00577241 /* OrderRowViewModel.swift */; };
 		C1C05630257422AF00577241 /* OrderRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C056262574223F00577241 /* OrderRowViewModel.swift */; };
 		C1DD372E2566413900AEC7A6 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DD372D2566413900AEC7A6 /* OrderRow.swift */; };
@@ -87,8 +91,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C115A173257CA56C00F26EDE /* OrdersListViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListViews.swift; sourceTree = "<group>"; };
+		C115A173257CA56C00F26EDE /* OrdersListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListSection.swift; sourceTree = "<group>"; };
 		C115A18A257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiteratureOrder+Extensions.swift"; sourceTree = "<group>"; };
+		C11C0E8E257F53BB002C104E /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C1298D5F2564D2B300298A55 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		C1298D662564DD0200298A55 /* LiteratureItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteratureItemCell.swift; sourceTree = "<group>"; };
 		C1298D6D2565A3E100298A55 /* NewLiteratureItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLiteratureItemView.swift; sourceTree = "<group>"; };
@@ -121,11 +126,12 @@
 		C1A7EBFE256327E800740389 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A7EC02256327E800740389 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		C1A7EC04256327E800740389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1ABBF08257B539D00CD0C43 /* OrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersList.swift; sourceTree = "<group>"; };
 		C1AD2A14257B6CFB002C9B93 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		C1AE25442572373A009DBC44 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.3.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		C1AE25462572374A009DBC44 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C1AE834D257D880200BC556A /* StockroomApp+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockroomApp+Tabs.swift"; sourceTree = "<group>"; };
 		C1B673422565FFC3007276B4 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
+		C1BFBCA62580AE7D00BD3EB4 /* OverscrollSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverscrollSpacer.swift; sourceTree = "<group>"; };
 		C1C056262574223F00577241 /* OrderRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRowViewModel.swift; sourceTree = "<group>"; };
 		C1DD372D2566413900AEC7A6 /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
 		C1DD37382566527800AEC7A6 /* NewOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrderView.swift; sourceTree = "<group>"; };
@@ -168,7 +174,6 @@
 		C12A9704257375C1001F6F8F /* Literature Order */ = {
 			isa = PBXGroup;
 			children = (
-				C1899D492573708B00B1FE04 /* QuantityStepper.swift */,
 				C1DD37382566527800AEC7A6 /* NewOrderView.swift */,
 				C12A96F725737586001F6F8F /* LiteratureItemPicker.swift */,
 				C15568D9257078F4004765EB /* OrderDraft.swift */,
@@ -211,11 +216,14 @@
 		C18A881E256E3590002A1E5E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C1899D492573708B00B1FE04 /* QuantityStepper.swift */,
 				C133BD9B2574785B00ACF30E /* Buttons.swift */,
+				C11C0E8E257F53BB002C104E /* SearchBar.swift */,
 				C12A96F625737578001F6F8F /* NumberField.swift */,
 				C1530FD525639BF700BC4C8C /* ListDefaultView.swift */,
 				C1530FDC25639D6100BC4C8C /* SquishableButtonStyle.swift */,
 				C1AD2A14257B6CFB002C9B93 /* Badge.swift */,
+				C1BFBCA62580AE7D00BD3EB4 /* OverscrollSpacer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				C1A7EBDB256327E300740389 /* StockroomApp.swift */,
+				C1AE834D257D880200BC556A /* StockroomApp+Tabs.swift */,
 				C147F5E2257421230006E85E /* ShipmentsView.swift */,
 				C1BEDB5B25678512006846AA /* Literature Orders */,
 				C1530FC925639BB500BC4C8C /* Item Library */,
@@ -307,12 +316,11 @@
 		C1BEDB5B25678512006846AA /* Literature Orders */ = {
 			isa = PBXGroup;
 			children = (
-				C1ABBF08257B539D00CD0C43 /* OrdersList.swift */,
 				C12A9704257375C1001F6F8F /* Literature Order */,
 				C1298D5F2564D2B300298A55 /* OrdersView.swift */,
 				C1DD372D2566413900AEC7A6 /* OrderRow.swift */,
 				C1C056262574223F00577241 /* OrderRowViewModel.swift */,
-				C115A173257CA56C00F26EDE /* OrdersListViews.swift */,
+				C115A173257CA56C00F26EDE /* OrdersListSection.swift */,
 			);
 			path = "Literature Orders";
 			sourceTree = "<group>";
@@ -475,26 +483,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				C147F5E3257421230006E85E /* ShipmentsView.swift in Sources */,
-				C115A174257CA56C00F26EDE /* OrdersListViews.swift in Sources */,
+				C115A174257CA56C00F26EDE /* OrdersListSection.swift in Sources */,
 				C1298D672564DD0200298A55 /* LiteratureItemCell.swift in Sources */,
 				C115A18B257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift in Sources */,
+				C1BFBCA72580AE7D00BD3EB4 /* OverscrollSpacer.swift in Sources */,
 				C1298D6E2565A3E100298A55 /* NewLiteratureItemView.swift in Sources */,
 				C133BD9C2574785F00ACF30E /* Buttons.swift in Sources */,
 				C12A96FE2573759B001F6F8F /* LiteratureItemPicker.swift in Sources */,
 				C1B673432565FFC3007276B4 /* IconPicker.swift in Sources */,
 				C1A7EC05256327E800740389 /* Stockroom.xcdatamodeld in Sources */,
 				C18A8837256E3617002A1E5E /* LiteratureItemCellViewModel.swift in Sources */,
-				C181A608257B60CC00236AA9 /* OrdersList.swift in Sources */,
 				C18A0B9C2578D8D500913CB3 /* LiteratureItemDetail.swift in Sources */,
 				C1A7EC0B256327E800740389 /* Persistence.swift in Sources */,
 				C1AD2A15257B6CFB002C9B93 /* Badge.swift in Sources */,
 				C1530FDD25639D6100BC4C8C /* SquishableButtonStyle.swift in Sources */,
+				C1AE834E257D880200BC556A /* StockroomApp+Tabs.swift in Sources */,
 				C1A7EC07256327E800740389 /* StockroomApp.swift in Sources */,
 				C18A882C256E35C0002A1E5E /* LiteratureItem+Extensions.swift in Sources */,
 				C1298D602564D2B300298A55 /* OrdersView.swift in Sources */,
 				C1DD372E2566413900AEC7A6 /* OrderRow.swift in Sources */,
 				C1530FD625639BF700BC4C8C /* ListDefaultView.swift in Sources */,
 				C15568DA257078F4004765EB /* OrderDraft.swift in Sources */,
+				C11C0E8F257F53BB002C104E /* SearchBar.swift in Sources */,
 				C1A7EC09256327E800740389 /* ItemLibraryView.swift in Sources */,
 				C18A0B9A2578D8D500913CB3 /* LiteratureItemForm.swift in Sources */,
 				C174B264257371A400A199A0 /* QuantityStepper.swift in Sources */,
@@ -509,26 +519,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				C147F5E4257421230006E85E /* ShipmentsView.swift in Sources */,
-				C115A175257CA56C00F26EDE /* OrdersListViews.swift in Sources */,
+				C115A175257CA56C00F26EDE /* OrdersListSection.swift in Sources */,
 				C1298D682564DD0200298A55 /* LiteratureItemCell.swift in Sources */,
 				C115A18C257CC5FA00F26EDE /* LiteratureOrder+Extensions.swift in Sources */,
+				C1BFBCA82580AE7D00BD3EB4 /* OverscrollSpacer.swift in Sources */,
 				C1298D6F2565A3E100298A55 /* NewLiteratureItemView.swift in Sources */,
 				C133BD9D2574785F00ACF30E /* Buttons.swift in Sources */,
 				C12A96FF2573759B001F6F8F /* LiteratureItemPicker.swift in Sources */,
 				C1B673442565FFC3007276B4 /* IconPicker.swift in Sources */,
 				C1A7EC06256327E800740389 /* Stockroom.xcdatamodeld in Sources */,
 				C18A8838256E3617002A1E5E /* LiteratureItemCellViewModel.swift in Sources */,
-				C181A609257B60CC00236AA9 /* OrdersList.swift in Sources */,
 				C18A0B9D2578D8D500913CB3 /* LiteratureItemDetail.swift in Sources */,
 				C1A7EC0C256327E800740389 /* Persistence.swift in Sources */,
 				C1AD2A16257B6CFB002C9B93 /* Badge.swift in Sources */,
 				C1530FDE25639D6100BC4C8C /* SquishableButtonStyle.swift in Sources */,
+				C1AE834F257D880200BC556A /* StockroomApp+Tabs.swift in Sources */,
 				C1A7EC08256327E800740389 /* StockroomApp.swift in Sources */,
 				C18A882D256E35C0002A1E5E /* LiteratureItem+Extensions.swift in Sources */,
 				C1298D612564D2B300298A55 /* OrdersView.swift in Sources */,
 				C1DD372F2566413900AEC7A6 /* OrderRow.swift in Sources */,
 				C1530FD725639BF700BC4C8C /* ListDefaultView.swift in Sources */,
 				C15568DB257078F4004765EB /* OrderDraft.swift in Sources */,
+				C11C0E90257F53BB002C104E /* SearchBar.swift in Sources */,
 				C1A7EC0A256327E800740389 /* ItemLibraryView.swift in Sources */,
 				C18A0B9B2578D8D500913CB3 /* LiteratureItemForm.swift in Sources */,
 				C174B265257371A400A199A0 /* QuantityStepper.swift in Sources */,

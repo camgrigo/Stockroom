@@ -17,64 +17,61 @@ extension Color {
         #endif
     }
     
+    static func background(colorScheme: ColorScheme) -> Color {
+        switch colorScheme {
+        case .dark:
+            return .black
+        default:
+            return .white
+        }
+    }
+    
 }
 
 struct OrderRow: View {
-
+    
     @Environment(\.grouping) var grouping
     
     let order: LiteratureOrder
     
+    @Environment(\.colorScheme) var colorScheme
+    
     private func itemComponent(count: Int, title: String) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: 12) {
-                Text("\(count)")
-                    .shadowTextStyle()
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.secondarySystemFill, Color.secondarySystemFill.opacity(0.6)]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                        .cornerRadius(10)
-                    )
-            Text(title)
+        HStack(spacing: 8) {
+            Text(title).font(.headline)
+            Text("\(count)")
+                .font(Font.system(.footnote, design: .rounded).weight(.heavy))
+                .padding(.horizontal, 6)
+                .padding(.vertical, 3)
+                .foregroundColor(.background(colorScheme: colorScheme))
+                .background(Color.primary.cornerRadius(20))
         }
     }
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 8) {
-                if grouping != .item {
-                    itemComponent(count: Int(order.quantity), title: order.item!.title!)
-                }
-                HStack {
-                    if grouping != .recipient {
-                        Text(order.recipient!)
-                        Spacer()
-                    }
-                    if grouping != .requestDate {
-                        Text("\(order.date!, formatter: LiteratureOrder.dateFormatter)")
-                    }
-                }
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 200)), GridItem()], alignment: .leading, spacing: 10) {
+            if grouping != .item {
+                itemComponent(count: Int(order.quantity), title: order.item!.title!)
             }
-            Spacer()
+            if grouping != .recipient {
+                Text(order.recipient!)
+            }
+            if grouping != .requestDate {
+                Text("\(order.date!, formatter: LiteratureOrder.dateFormatter)")
+            }
         }
         .padding()
     }
     
 }
 
-//struct OrderRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OrderRow(
-//            model: OrderRowViewModel(
-//                title: "Suffering Tracts",
-//                subtitle: "Steve Jones",
-//                detail: "12/10/2020",
-//                quantityString: "256"
-//            ),
-//            grouping: .requestDate
-//        )
-//        .previewLayout(.fixed(width: 400, height: 120))
-//    }
-//}
+struct OrderRow_Previews: PreviewProvider {
+    
+    static let managedObjectContext = PersistenceController.preview.container.viewContext
+    
+    static var previews: some View {
+        OrderRow(order: try! managedObjectContext.fetch(LiteratureOrder.fetchRequest()).first!)
+            .environment(\.grouping, OrdersView.Grouping.requestDate)
+            .previewLayout(.fixed(width: 400, height: 120))
+    }
+}

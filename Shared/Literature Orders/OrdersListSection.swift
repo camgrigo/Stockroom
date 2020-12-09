@@ -28,11 +28,10 @@ struct OrdersListSection<Content: View>: View {
     var body: some View {
         Section {
             HStack(alignment: .firstTextBaseline, spacing: 12) {
-                Text(section.title).font(.headline)
-                if grouping != .item {
-                    Text("\(section.items.count)")
-                        .shadowTextStyle()
-                        .background(Color.secondarySystemFill)
+                Text(section.title).font(.title3)
+                if grouping != .item && section.items.count > 1 {
+                    Text("\(section.items.count) Orders")
+                        .foregroundColor(.secondary)
                 }
                 Spacer()
             }

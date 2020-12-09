@@ -27,7 +27,8 @@ struct ShadowTextStyle: ViewModifier {
                 Font.system(.subheadline, design: .rounded)
                     .weight(.heavy)
             )
-            .padding(4)
+            .padding(.vertical, 4)
+            .padding(.horizontal, 8)
             .shadow(color: shadowColor, radius: 4)
     }
     
