@@ -7,124 +7,46 @@
 
 import SwiftUI
 
+class ModalManager: NSObject, ObservableObject {
+    
+    @Published var isShowingItemsSheet = false
+    
+    @Published var isShowingNewOrderSheet = false
+    
+}
+
 @main
 struct StockroomApp: App {
+    
+    @Environment(\.colorScheme) var colorScheme
     
     let persistenceController = PersistenceController.shared
     
     @State private var selectedTab = Tab.orders
     
+    @ObservedObject var modalManager = ModalManager()
+    
     var body: some Scene {
         WindowGroup {
             CustomTabView()
+//                .accentColor(accentColor)
+                .environmentObject(modalManager)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
     
 }
 
-struct CustomTabView: View {
-    
-    typealias Tab = StockroomApp.Tab // TODO: Remove hardcoded typealias
-    
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
-    @State private var selectedTab = Tab.orders
-    
-    
-    private var tabView: some View {
-        TabView {
-            ForEach(Tab.allCases, id: \.self) { tab in
-                NavigationView {
-                    tab.view
-                }
-                .tabItem {
-                    Group {
-                        Image(systemName: tab.systemImage)
-                        Text(tab.title)
-                    }
-                }
-            }
-        }
-    }
-    
-    private var sidebarView: some View {
-        NavigationView {
-            List(Tab.allCases, id: \.self) { tab in
-                Label(tab.title, systemImage: tab.systemImage)
-                    .onTapGesture { selectedTab = tab }
-            }
-            .listStyle(SidebarListStyle())
-            .navigationTitle("Stockroom")
-            
-            selectedTab.view
-            
-            Text("Content")
-        }
-    }
-    
-    var body: some View {
-        #if os(iOS)
-        switch horizontalSizeClass {
-        case .compact:
-            tabView
-        default:
-            sidebarView
-        }
-        #else
-        sidebarView
-        #endif
-    }
-    
-}
-
-extension StockroomApp {
-    
-    enum Tab: CaseIterable {
-        
-        case orders, itemLibrary, shipments
-        
-        
-        var systemImage: String {
-            switch self {
-            case .orders:
-                return "paperplane.fill"
-            case .shipments:
-                return "shippingbox.fill"
-            case .itemLibrary:
-                return "books.vertical.fill"
-            }
-        }
-        
-        var title: String {
-            switch self {
-            case .orders:
-                return "Orders"
-            case .shipments:
-                return "Shipments"
-            case .itemLibrary:
-                return "Library"
-            }
-        }
-        
-        var view: AnyView {
-            switch self {
-            case .orders:
-                return AnyView(OrdersView())
-            case .shipments:
-                return AnyView(ShipmentsView())
-                
-            case .itemLibrary:
-                return AnyView(
-                    ItemLibraryView { item in
-                        NavigationLink(destination: LiteratureItemDetail(item: item)) {
-                            LiteratureItemCell(model: LiteratureItemCellViewModel(literatureItem: item))
-                        }
-                    }
-                )
-            }
-        }
-        
-    }
-    
-}
+//extension StockroomApp {
+//
+//    private var accentColor: Color {
+//        switch colorScheme {
+//        case .dark:
+//            return Color(#colorLiteral(red: 0, green: 1, blue: 0.870255982, alpha: 1))
+//
+//        default:
+//            return Color(#colorLiteral(red: 0, green: 0.6012692752, blue: 0.5962586979, alpha: 1))
+//        }
+//    }
+//
+//}

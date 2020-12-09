@@ -93,7 +93,7 @@ struct NewOrderView: View {
                     LiteratureItemPicker(isShowingItemPicker: $isShowingItemPicker, orderDraft: orderDraft)
                 }
                 
-                QuantityStepper(orderDraft: orderDraft)
+                QuantityStepper(value: $orderDraft.quantity, step: orderDraft.interval)
             }
         }
     }

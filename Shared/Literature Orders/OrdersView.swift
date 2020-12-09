@@ -8,8 +8,20 @@
 import SwiftUI
 import CoreData
 
+struct OrdersViewGroupingKey: EnvironmentKey {
+    static var defaultValue: OrdersView.Grouping = .requestDate
+}
+
+extension EnvironmentValues {
+    var grouping: OrdersView.Grouping {
+        get { self[OrdersViewGroupingKey.self] }
+        set { self[OrdersViewGroupingKey.self] = newValue }
+    }
+}
+
 struct OrdersView: View {
     
+    @EnvironmentObject private var modalManager: ModalManager
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(
@@ -19,7 +31,15 @@ struct OrdersView: View {
     )
     private var orders: FetchedResults<LiteratureOrder>
     
-    private var items: Dictionary<String, [LiteratureOrder]> {
+    
+    let navigationTitle = "Orders"
+    
+    @State private var grouping = OrdersView.Grouping.requestDate
+    
+    
+    @State private var searchText = String()
+    
+    var sections: [(title: String, items: [LiteratureOrder])] {
         Dictionary(grouping: orders) { order in
             switch grouping {
             case .requestDate:
@@ -37,40 +57,31 @@ struct OrdersView: View {
                 return order.item!.title!
             }
         }
+        .sorted { $0.0 < $1.0 }
+        .map { (title: $0.0, items: $0.1) }
     }
-    
-    
-    let navigationTitle = "Orders"
-    
-    @State private var isShowingItemsSheet = false
-    
-    @State private var isShowingNewOrderSheet = false
-    
-    @State private var grouping = Grouping.requestDate
     
     
     var body: some View {
         Group {
-            if items.count > 0 {
-                ScrollView {
-                    LazyVStack {
-                        ViewMenu(grouping: $grouping)
-                        
-                        switch grouping {
-                        case .requestDate:
-                            AnyView(OrdersListRequestDateView(items: items))
-                            
-                        case .recipient:
-                            AnyView(OrdersListRecipientView(items: items))
-                            
-                        case .item:
-                            AnyView(OrdersListItemView(items: items))
+            if !sections.isEmpty {
+                List {
+                    SearchBar(text: $searchText)
+                    
+                    ForEach(sections, id: \.title) { section in
+                        OrdersListSection(section: section) {
+                            ForEach(section.items) {
+                                OrderRow(order: $0)
+                            }
                         }
+                        .environment(\.grouping, grouping)
                     }
+                    
+                    OverscrollSpacer()
                 }
                 
             } else {
-                ListDefaultView(text: "Record orders as you place them.", action: addItem) {
+                ListDefaultView(text: "Record orders as you place them.", action: { modalManager.isShowingNewOrderSheet = true }) {
                     Image(systemName: "paperplane")
                 }
                 .foregroundColor(.secondary)
@@ -78,16 +89,8 @@ struct OrdersView: View {
         }
         .navigationTitle(navigationTitle)
         .toolbar {
-            AddButton(action: addItem)
-                .sheet(isPresented: $isShowingNewOrderSheet) {
-                    NewOrderView(isShowing: $isShowingNewOrderSheet)
-                }
+            ViewMenu(grouping: $grouping)
         }
-    }
-    
-    
-    private func addItem() {
-        isShowingNewOrderSheet = true
     }
     
     //    private func deleteItems(offsets: IndexSet) {
@@ -125,25 +128,40 @@ extension OrdersView {
     
     struct ViewMenu: View {
         
+        @EnvironmentObject var modalManager: ModalManager
+        
         @Binding var grouping: OrdersView.Grouping
         
         var body: some View {
             Menu {
-                Picker(selection: $grouping, label: Text("View")) {
-                    ForEach(Grouping.allCases, id: \.self) {
-                        Text($0.title)
+                Section {
+                    Button(action: { modalManager.isShowingNewOrderSheet = true }) {
+                        Label("New Order", systemImage: "square.and.pencil")
+                    }
+                    .sheet(isPresented: $modalManager.isShowingNewOrderSheet) {
+                        NewOrderView(isShowing: $modalManager.isShowingNewOrderSheet)
+                    }
+                }
+                
+                Section {
+                    Picker(selection: $grouping, label: Text("View")) {
+                        ForEach(Grouping.allCases, id: \.self) {
+                            Text($0.title)
+                        }
                     }
                 }
             }
             label: {
-                HStack {
-                    Label("View", systemImage: "rectangle.grid.2x2")
-                    Spacer()
-                    Text(grouping.title).animation(nil)
-                }
-                    .padding()
-                    .background(Color.blue.opacity(0.15).cornerRadius(15))
-                    .padding()
+                Label("Menu", systemImage: "ellipsis.circle")
+                    .imageScale(.large)
+                //                HStack {
+                //                    Label("View", systemImage: "rectangle.grid.2x2")
+                //                    Spacer()
+                //                    Text(grouping.title).animation(nil)
+                //                }
+                //                .padding()
+                //                .background(Color.blue.opacity(0.15).cornerRadius(15))
+                //                .padding()
             }
         }
         
