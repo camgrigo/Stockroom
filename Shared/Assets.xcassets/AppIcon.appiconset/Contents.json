@@ -13,13 +13,13 @@
       "size" : "20x20"
     },
     {
-      "filename" : "29-1.png",
+      "filename" : "29.png",
       "idiom" : "iphone",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "58-1.png",
+      "filename" : "58.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
@@ -31,7 +31,7 @@
       "size" : "29x29"
     },
     {
-      "filename" : "80-1.png",
+      "filename" : "80.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
@@ -79,13 +79,13 @@
       "size" : "20x20"
     },
     {
-      "filename" : "29.png",
+      "filename" : "29-1.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "58.png",
+      "filename" : "58-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
@@ -97,7 +97,7 @@
       "size" : "40x40"
     },
     {
-      "filename" : "80.png",
+      "filename" : "80-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
@@ -175,7 +175,7 @@
       "size" : "32x32"
     },
     {
-      "filename" : "128-1.png",
+      "filename" : "128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
@@ -205,7 +205,7 @@
       "size" : "512x512"
     },
     {
-      "filename" : "1024-1.png",
+      "filename" : "AppIcon.002 copy 3.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
