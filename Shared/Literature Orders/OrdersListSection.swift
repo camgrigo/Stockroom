@@ -1,5 +1,5 @@
 //
-//  OrdersListViews.swift
+//  OrdersListSection.swift
 //  Stockroom
 //
 //  Created by Cameron Grigoriadis on 12/5/20.
@@ -7,17 +7,9 @@
 
 import SwiftUI
 
-struct OverscrollSpacer: View {
-    
-    var body: some View {
-        GeometryReader { geometry in
-            Color.clear.frame(height: geometry.size.height * 0.5)
-        }
-    }
-    
-}
-
 struct OrdersListSection<Content: View>: View {
+    
+    @Environment(\.colorScheme) var colorScheme
     
     @Environment(\.grouping) var grouping
     
@@ -25,13 +17,22 @@ struct OrdersListSection<Content: View>: View {
     
     let content: Content
     
+    private var backgroundColor: Color {
+        #if os(iOS)
+        return Color(.systemBackground)
+        #else
+        return colorScheme == .dark ? .black : .white
+        #endif
+    }
+    
     var body: some View {
         Section {
             HStack(alignment: .firstTextBaseline, spacing: 12) {
                 Text(section.title).font(.headline)
                 if grouping != .item {
-                    Badge { Text("\(section.items.count)") }
-                        .padding(.trailing, 6)
+                    Text("\(section.items.count)")
+                        .shadowTextStyle()
+                        .background(Color.secondarySystemFill)
                 }
                 Spacer()
             }

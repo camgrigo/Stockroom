@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+extension Color {
+    
+    static var secondarySystemFill: Color {
+        #if os(iOS)
+        return Color(.secondarySystemFill)
+        #else
+        return Color.secondary
+        #endif
+    }
+    
+}
+
 struct OrderRow: View {
 
     @Environment(\.grouping) var grouping
@@ -15,9 +27,16 @@ struct OrderRow: View {
     
     private func itemComponent(count: Int, title: String) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: 12) {
-            Badge(color: .blue) {
                 Text("\(count)")
-            }
+                    .shadowTextStyle()
+                    .background(
+                        LinearGradient(
+                            gradient: Gradient(colors: [Color.secondarySystemFill, Color.secondarySystemFill.opacity(0.6)]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                        .cornerRadius(10)
+                    )
             Text(title)
         }
     }

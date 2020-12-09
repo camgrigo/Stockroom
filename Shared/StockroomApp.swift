@@ -29,24 +29,12 @@ struct StockroomApp: App {
     var body: some Scene {
         WindowGroup {
             CustomTabView()
-//                .accentColor(accentColor)
                 .environmentObject(modalManager)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .sheet(isPresented: $modalManager.isShowingNewOrderSheet) {
+                    NewOrderView(isShowing: $modalManager.isShowingNewOrderSheet)
+                }
         }
     }
     
 }
-
-//extension StockroomApp {
-//
-//    private var accentColor: Color {
-//        switch colorScheme {
-//        case .dark:
-//            return Color(#colorLiteral(red: 0, green: 1, blue: 0.870255982, alpha: 1))
-//
-//        default:
-//            return Color(#colorLiteral(red: 0, green: 0.6012692752, blue: 0.5962586979, alpha: 1))
-//        }
-//    }
-//
-//}

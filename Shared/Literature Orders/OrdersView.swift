@@ -136,10 +136,7 @@ extension OrdersView {
             Menu {
                 Section {
                     Button(action: { modalManager.isShowingNewOrderSheet = true }) {
-                        Label("New Order", systemImage: "square.and.pencil")
-                    }
-                    .sheet(isPresented: $modalManager.isShowingNewOrderSheet) {
-                        NewOrderView(isShowing: $modalManager.isShowingNewOrderSheet)
+                        Label("New Order", systemImage: "rectangle.badge.plus")
                     }
                 }
                 
