@@ -1,5 +1,5 @@
 //
-//  LiteratureOrder+Extensions.swift
+//  LiteratureRequest+Extensions.swift
 //  Stockroom
 //
 //  Created by Cameron Grigoriadis on 12/5/20.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension LiteratureOrder {
+extension LiteratureRequest {
     
     static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()

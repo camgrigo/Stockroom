@@ -23,7 +23,6 @@ struct ShipmentsView: View {
             ToolbarItem(placement: .primaryAction) {
                 AddButton(action: addItem)
                 .sheet(isPresented: $isShowingNewItemSheet) {
-//                    NewOrderView(isShowing: $isShowingNewOrderSheet)
                     Text("Not done yet")
                 }
             }

@@ -8,34 +8,50 @@
 import SwiftUI
 import CoreData
 
-final class OrderDraft: ObservableObject {
+final class LiteratureRequestDraft: ObservableObject {
     
     @Published var date = Date()
     
-    @Published var quantity = 1
-    
-    @Published var literatureItem: LiteratureItem?
-    
-    var interval: Int {
-        Int(literatureItem?.category?.quantityPerGrouping ?? 1)
-    }
+    @Published var isRecurring = false
     
     @Published var recipient = String()
     
-    @Published var isRecurring = false
-    
-    var isValid: Bool { literatureItem != nil }
+//    @Published var orders = [OrderDraft]()
     
     
-    func managedObject(context: NSManagedObjectContext) -> LiteratureOrder {
-        let order = LiteratureOrder(context: context)
+    func commit(context: NSManagedObjectContext) {
+        let request = LiteratureRequest(context: context)
         
-        order.date = date
-        order.item = literatureItem!
-        order.quantity = Int32(quantity)
-        order.recipient = recipient
+        request.date = date
+        request.recipient = recipient
+        request.isRecurring = isRecurring
         
-        return order
+        PersistenceController.save(context)
     }
     
 }
+
+//final class OrderDraft: ObservableObject {
+//
+//    @Published var quantity = 1
+//
+//    @Published var literatureItem: LiteratureItem?
+//
+////    var interval: Int {
+////        Int(literatureItem?.category?.quantityPerGrouping ?? 1)
+////    }
+//
+//    func managedObject(context: NSManagedObjectContext) -> LiteratureRequest {
+//        let request = LiteratureRequest(context: context)
+//
+//        let order = LiteratureOrder(context: context)
+//
+//        order.quantity = Int32(quantity)
+//        order.item = literatureItem!
+//
+//        request.orders.append(order)
+//
+//        return request
+//    }
+//
+//}

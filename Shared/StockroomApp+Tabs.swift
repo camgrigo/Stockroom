@@ -11,7 +11,9 @@ struct CustomTabView: View {
     
     typealias Tab = StockroomApp.Tab // TODO: Remove hardcoded typealias
     
+    #if os(iOS)
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    #endif
     
     @State private var selectedTab = Tab.orders
     

@@ -35,19 +35,19 @@ class OrderRowViewModel: NSObject {
         self.quantityString = quantityString
     }
     
-    init(_ order: LiteratureOrder) {
-        self.title = order.item?.title ?? String()
+    init(_ request: LiteratureRequest) {
+        self.title = /* request.order.item?.title ?? */ "-----"
         
-        self.subtitle = order.recipient ?? String()
+        self.subtitle = request.recipient ?? String()
         
-        if let date = order.date {
+        if let date = request.date {
             self.detail = dateFormatter.string(from: date)
             
         } else {
             self.detail = String()
         }
         
-        self.quantityString = String(order.quantity)
+        self.quantityString = /* String(request.order.quantity) */ "---"
     }
     
 }

@@ -69,8 +69,8 @@
 		C1C05630257422AF00577241 /* OrderRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C056262574223F00577241 /* OrderRowViewModel.swift */; };
 		C1DD372E2566413900AEC7A6 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DD372D2566413900AEC7A6 /* OrderRow.swift */; };
 		C1DD372F2566413900AEC7A6 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DD372D2566413900AEC7A6 /* OrderRow.swift */; };
-		C1DD37392566527800AEC7A6 /* NewOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DD37382566527800AEC7A6 /* NewOrderView.swift */; };
-		C1DD373A2566527800AEC7A6 /* NewOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DD37382566527800AEC7A6 /* NewOrderView.swift */; };
+		C1DD37392566527800AEC7A6 /* NewRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DD37382566527800AEC7A6 /* NewRequestView.swift */; };
+		C1DD373A2566527800AEC7A6 /* NewRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DD37382566527800AEC7A6 /* NewRequestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +134,7 @@
 		C1BFBCA62580AE7D00BD3EB4 /* OverscrollSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverscrollSpacer.swift; sourceTree = "<group>"; };
 		C1C056262574223F00577241 /* OrderRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRowViewModel.swift; sourceTree = "<group>"; };
 		C1DD372D2566413900AEC7A6 /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
-		C1DD37382566527800AEC7A6 /* NewOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrderView.swift; sourceTree = "<group>"; };
+		C1DD37382566527800AEC7A6 /* NewRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +174,7 @@
 		C12A9704257375C1001F6F8F /* Literature Order */ = {
 			isa = PBXGroup;
 			children = (
-				C1DD37382566527800AEC7A6 /* NewOrderView.swift */,
+				C1DD37382566527800AEC7A6 /* NewRequestView.swift */,
 				C12A96F725737586001F6F8F /* LiteratureItemPicker.swift */,
 				C15568D9257078F4004765EB /* OrderDraft.swift */,
 			);
@@ -508,7 +508,7 @@
 				C1A7EC09256327E800740389 /* ItemLibraryView.swift in Sources */,
 				C18A0B9A2578D8D500913CB3 /* LiteratureItemForm.swift in Sources */,
 				C174B264257371A400A199A0 /* QuantityStepper.swift in Sources */,
-				C1DD37392566527800AEC7A6 /* NewOrderView.swift in Sources */,
+				C1DD37392566527800AEC7A6 /* NewRequestView.swift in Sources */,
 				C12A96FC2573759B001F6F8F /* NumberField.swift in Sources */,
 				C1C05630257422AF00577241 /* OrderRowViewModel.swift in Sources */,
 			);
@@ -544,7 +544,7 @@
 				C1A7EC0A256327E800740389 /* ItemLibraryView.swift in Sources */,
 				C18A0B9B2578D8D500913CB3 /* LiteratureItemForm.swift in Sources */,
 				C174B265257371A400A199A0 /* QuantityStepper.swift in Sources */,
-				C1DD373A2566527800AEC7A6 /* NewOrderView.swift in Sources */,
+				C1DD373A2566527800AEC7A6 /* NewRequestView.swift in Sources */,
 				C12A96FD2573759B001F6F8F /* NumberField.swift in Sources */,
 				C1C0562F257422AF00577241 /* OrderRowViewModel.swift in Sources */,
 			);

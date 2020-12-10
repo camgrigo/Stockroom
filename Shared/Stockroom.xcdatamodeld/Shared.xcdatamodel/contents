@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17707" systemVersion="20B29" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Delivery" representedClassName="Delivery" syncable="YES" codeGenerationType="class">
+        <attribute name="carrier" optional="YES" attributeType="String"/>
+        <relationship name="requests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LiteratureRequest" inverseName="deliveries" inverseEntity="LiteratureRequest"/>
+    </entity>
     <entity name="LiteratureItem" representedClassName="LiteratureItem" syncable="YES" codeGenerationType="class">
         <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -14,15 +18,28 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LiteratureItem" inverseName="category" inverseEntity="LiteratureItem"/>
     </entity>
     <entity name="LiteratureOrder" representedClassName="LiteratureOrder" syncable="YES" codeGenerationType="class">
+        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LiteratureItem" inverseName="orders" inverseEntity="LiteratureItem"/>
+        <relationship name="requests" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LiteratureRequest" inverseName="orders" inverseEntity="LiteratureRequest"/>
+        <relationship name="shipments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shipment" inverseName="orders" inverseEntity="Shipment"/>
+    </entity>
+    <entity name="LiteratureRequest" representedClassName="LiteratureRequest" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isRecurring" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="recipient" optional="YES" attributeType="String"/>
-        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LiteratureItem" inverseName="orders" inverseEntity="LiteratureItem"/>
+        <relationship name="deliveries" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Delivery" inverseName="requests" inverseEntity="Delivery"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LiteratureOrder" inverseName="requests" inverseEntity="LiteratureOrder"/>
+    </entity>
+    <entity name="Shipment" representedClassName="Shipment" syncable="YES" codeGenerationType="class">
+        <attribute name="trackingNumber" optional="YES" attributeType="String"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LiteratureOrder" inverseName="shipments" inverseEntity="LiteratureOrder"/>
     </entity>
     <elements>
         <element name="LiteratureItem" positionX="-11.64105224609375" positionY="16.32977294921875" width="128" height="133"/>
         <element name="LiteratureItemCategory" positionX="-8.15008544921875" positionY="194.8926696777344" width="128" height="88"/>
-        <element name="LiteratureOrder" positionX="-222.6234130859375" positionY="16.900146484375" width="128" height="118"/>
+        <element name="LiteratureRequest" positionX="361.929931640625" positionY="99.638671875" width="128" height="118"/>
+        <element name="Shipment" positionX="178.8580322265625" positionY="-111.9488372802734" width="128" height="73"/>
+        <element name="Delivery" positionX="354.1243286132812" positionY="-19.58981323242188" width="128" height="73"/>
+        <element name="LiteratureOrder" positionX="178.7724609375" positionY="124.9395141601562" width="128" height="103"/>
     </elements>
 </model>

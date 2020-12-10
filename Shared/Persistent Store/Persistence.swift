@@ -13,25 +13,30 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for i in 0..<10 {
-            let newItem = LiteratureItem(context: viewContext)
-            newItem.id = UUID()
-            newItem.title = "New Item \(i)"
-            newItem.icon = "book.fill"
-        }
+//        for i in 0..<10 {
+//            let newItem = LiteratureItem(context: viewContext)
+//            newItem.id = UUID()
+//            newItem.title = "New Item \(i)"
+//            newItem.icon = "book.fill"
+//        }
+//        
+//        let request = LiteratureRequest(context: viewContext)
+//        
+//        let item = LiteratureItem(context: viewContext)
+//        
+//        item.title = "Suffering Tracts"
+//        item.icon = LiteratureItem.Icon.book.rawValue
+//        
+//        request.date = Date()
+//        request.recipient = "Steve Jones"
+//        request.isRecurring = false
         
-        let order = LiteratureOrder(context: viewContext)
-        
-        let item = LiteratureItem(context: viewContext)
-        
-        item.title = "Suffering Tracts"
-        item.icon = LiteratureItem.Icon.book.rawValue
-        
-        order.date = Date()
-        order.item = item
-        order.recipient = "Steve Jones"
-        order.quantity = 256
-        order.isRecurring = false
+//        let order = LiteratureOrder(context: viewContext)
+//
+//        order.item = item
+//        order.quantity = 256
+//
+//        request.orders.append(order)
         
         save(viewContext)
         

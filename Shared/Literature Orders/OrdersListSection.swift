@@ -13,7 +13,7 @@ struct OrdersListSection<Content: View>: View {
     
     @Environment(\.grouping) var grouping
     
-    let section: (title: String, items: [LiteratureOrder])
+    let section: (title: String, items: [LiteratureRequest])
     
     let content: Content
     
@@ -43,7 +43,7 @@ struct OrdersListSection<Content: View>: View {
     }
     
     
-    init(section: (title: String, items: [LiteratureOrder]), content: () -> Content) {
+    init(section: (title: String, items: [LiteratureRequest]), content: () -> Content) {
         self.section = section
         self.content = content()
     }

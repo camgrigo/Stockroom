@@ -32,7 +32,7 @@ struct StockroomApp: App {
                 .environmentObject(modalManager)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .sheet(isPresented: $modalManager.isShowingNewOrderSheet) {
-                    NewOrderView(isShowing: $modalManager.isShowingNewOrderSheet)
+                    NewRequestView(isShowing: $modalManager.isShowingNewOrderSheet)
                 }
         }
     }
