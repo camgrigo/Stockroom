@@ -36,7 +36,7 @@ struct PersistenceController {
 //        order.item = item
 //        order.quantity = 256
 //
-//        request.orders.append(order)
+//        request.items.append(order)
         
         save(viewContext)
         
