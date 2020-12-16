@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  Stockroom
+
+  Created by Cameron Grigoriadis on 12/12/20.
+  
+*/
+
+"Sidebar_Navigation_Title" = "Stockroom";
+
+"Requests_View_Navigation_Title" = "Requests";
+"Requests_View_Default_Description" = "Keep track of requests";
+
+"Item_Library_View_Navigation_Title" = "Item Library";
+"Item_Library_View_Default_Description" = "Add items to your library to add them to requests and shipments";
+
+"NEW_LITERATURE_ITEM_FORM_TITLE" = "New Item";
+
+"Shipments_View_Navigation_Title" = "Shipments";
+"Shipments_View_Default_Description" = "Plan out deliveries";
+
+"Cancel_Button_Title" = "Cancel";
+"Done_Button_Title" = "Done";
+
+"New_Request_View_Navigation_Title" = "New Request";
+"ADD_REQUEST_ITEM_BUTTON_LABEL" = "New Item";
+
+"Date_Picker_Label" = "Date";
+"Is_Recurring_Toggle_Title" = "Repeat Every Month";
+
+"Name_Text_Field_Title" = "Recipient";
+"Name_Text_Field_Description" = "Name";
+
+"Default_View_Call_To_Action" = "Get started";
+
+"Settings_View_Navigation_Title" = "Settings";

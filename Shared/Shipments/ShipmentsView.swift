@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ShipmentsView: View {
     
-    private let navigationTitle = "Shipments"
+    private let navigationTitle: LocalizedStringKey = "Shipments_View_Navigation_Title"
     
     @State private var isShowingNewItemSheet = false
     
     
     var body: some View {
-        ListDefaultView(text: "No shipments yet.", action: { isShowingNewItemSheet = true }) {
-            Image(systemName: "shippingbox")
+        ListDefaultView(descriptionKey: "Shipments_View_Default_Description", action: { isShowingNewItemSheet = true }) {
+            Image(systemName: "shippingbox.fill")
         }
         .navigationTitle(navigationTitle)
         .toolbar {

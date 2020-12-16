@@ -17,25 +17,27 @@ struct LiteratureItemForm: View {
     private let itemTitleFont = Font.title.weight(.medium)
     
     
+    private var titleField: some View {
+        #if os(iOS)
+        return TextField("Title", text: $title)
+            .font(itemTitleFont)
+            .autocapitalization(.words)
+        #else
+        return TextField("Title", text: $title)
+            .font(itemTitleFont)
+        #endif
+    }
+    
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                #if os(iOS)
-                TextField("Title", text: $title)
-                    .font(itemTitleFont)
-                    .autocapitalization(.words)
-                #else
-                TextField("Title", text: $title)
-                    .font(itemTitleFont)
-                #endif
-                VStack(alignment: .leading) {
-                    Text("Icon")
-                        .font(.headline)
-                    IconPicker(icons: LiteratureItem.Icon.allCases, selection: $icon)
-                }
-                .padding(.top)
+        LazyVStack {
+            titleField
+            
+            VStack(alignment: .leading) {
+                Text("Icon")
+                    .font(.headline)
+                IconPicker(icons: LiteratureItem.Icon.allCases, selection: $icon)
             }
-            .padding()
+            .padding(.top)
         }
     }
     

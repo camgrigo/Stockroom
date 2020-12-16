@@ -19,14 +19,27 @@ struct AddButton: View {
     
 }
 
-struct DoneButton: View {
+struct RoundedButtonStyle: ViewModifier {
     
-    let action: () -> Void
+    let color: Color
     
-    var body: some View {
-        Button(action: action) {
-            Text("Done").bold()
-        }
+    init(color: Color = Color.secondary.opacity(0.2)) {
+        self.color = color
+    }
+    
+    
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background(color.cornerRadius(Metrics.cornerRadius))
+    }
+    
+}
+
+extension View {
+    
+    func roundedStyle() -> some View {
+        self.modifier(RoundedButtonStyle())
     }
     
 }

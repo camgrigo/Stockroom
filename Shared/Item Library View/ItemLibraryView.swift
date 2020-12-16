@@ -20,8 +20,6 @@ struct ItemLibraryView<Cell: View>: View {
     private var items: FetchedResults<LiteratureItem>
     
     
-    private let navigationTitle = "Item Library"
-    
     @State private var isShowingNewItemSheet = false
     
     let cellProvider: (LiteratureItem) -> Cell
@@ -33,13 +31,13 @@ struct ItemLibraryView<Cell: View>: View {
                 list
                 
             } else {
-                ListDefaultView(text: "Add a book, magazine,\nor other publication", action: addItem) {
-                    Image(systemName: "books.vertical")
+                ListDefaultView(descriptionKey: "Item_Library_View_Default_Description", action: addItem) {
+                    Image(systemName: "books.vertical.fill")
                 }
                 .foregroundColor(.secondary)
             }
         }
-        .navigationTitle(navigationTitle)
+        .navigationTitle(Text(LocalizedStringKey("Item_Library_View_Navigation_Title")))
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 AddButton(action: addItem)
@@ -52,7 +50,7 @@ struct ItemLibraryView<Cell: View>: View {
     
     private var list: some View {
         List {
-            ForEach(items) {
+            ForEach(items, id: \.self) {
                 cellProvider($0)
             }
             .onDelete(perform: deleteItems)

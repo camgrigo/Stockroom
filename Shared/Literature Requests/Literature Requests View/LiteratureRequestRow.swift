@@ -1,5 +1,5 @@
 //
-//  OrderRow.swift
+//  LiteratureRequestRow.swift
 //  Stockroom
 //
 //  Created by Cameron Grigoriadis on 11/18/20.
@@ -7,28 +7,7 @@
 
 import SwiftUI
 
-extension Color {
-    
-    static var secondarySystemFill: Color {
-        #if os(iOS)
-        return Color(.secondarySystemFill)
-        #else
-        return Color.secondary
-        #endif
-    }
-    
-    static func background(colorScheme: ColorScheme) -> Color {
-        switch colorScheme {
-        case .dark:
-            return .black
-        default:
-            return .white
-        }
-    }
-    
-}
-
-struct OrderRow: View {
+struct LiteratureRequestRow: View {
     
     @Environment(\.grouping) var grouping
     
@@ -62,7 +41,7 @@ struct OrderRow: View {
     var body: some View {
         VStack {
             Text("Request")
-//            ForEach(request.orders!, id: \.self) { order in
+//            ForEach(request.items!, id: \.self) { order in
 //                LazyVGrid(columns: columns, alignment: .leading, spacing: 10) {
 //                    if grouping != .item {
 //                        itemComponent(count: Int(order.quantity), title: order.item!.title!)
@@ -86,7 +65,7 @@ struct OrderRow: View {
 //    static let managedObjectContext = PersistenceController.preview.container.viewContext
 //
 //    static var previews: some View {
-//        OrderRow(order: try! managedObjectContext.fetch(LiteratureRequest.fetchRequest()).first!)
+//        LiteratureRequestRow(order: try! managedObjectContext.fetch(LiteratureRequest.fetchRequest()).first!)
 //            .environment(\.grouping, OrdersView.Grouping.requestDate)
 //            .previewLayout(.fixed(width: 400, height: 120))
 //    }

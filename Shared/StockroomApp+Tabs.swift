@@ -7,73 +7,16 @@
 
 import SwiftUI
 
-struct CustomTabView: View {
-    
-    typealias Tab = StockroomApp.Tab // TODO: Remove hardcoded typealias
-    
-    #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    #endif
-    
-    @State private var selectedTab = Tab.orders
-    
-    
-    private var tabView: some View {
-        TabView {
-            ForEach(Tab.allCases, id: \.self) { tab in
-                NavigationView {
-                    tab.view
-                }
-                .tabItem {
-                    Group {
-                        Image(systemName: tab.systemImage)
-                        Text(tab.title)
-                    }
-                }
-            }
-        }
-    }
-    
-    private var sidebarView: some View {
-        NavigationView {
-            List(Tab.allCases, id: \.self) { tab in
-                Label(tab.title, systemImage: tab.systemImage)
-                    .onTapGesture { selectedTab = tab }
-            }
-            .listStyle(SidebarListStyle())
-            .navigationTitle("Stockroom")
-            
-            selectedTab.view
-            
-            Text("Content")
-        }
-    }
-    
-    var body: some View {
-        #if os(iOS)
-        switch horizontalSizeClass {
-        case .compact:
-            tabView
-        default:
-            sidebarView
-        }
-        #else
-        sidebarView
-        #endif
-    }
-    
-}
-
 extension StockroomApp {
     
     enum Tab: CaseIterable {
         
-        case orders, itemLibrary, shipments, settings
+        case requests, itemLibrary, shipments, settings
         
         
         var systemImage: String {
             switch self {
-            case .orders:
+            case .requests:
                 return "paperplane.fill"
             case .shipments:
                 return "shippingbox.fill"
@@ -84,23 +27,23 @@ extension StockroomApp {
             }
         }
         
-        var title: String {
+        var title: LocalizedStringKey {
             switch self {
-            case .orders:
-                return "Orders"
+            case .requests:
+                return "Requests_View_Navigation_Title"
             case .shipments:
-                return "Shipments"
+                return "Shipments_View_Navigation_Title"
             case .itemLibrary:
-                return "Library"
+                return "Item_Library_View_Navigation_Title"
             case .settings:
-                return "Settings"
+                return "Settings_View_Navigation_Title"
             }
         }
         
         var view: AnyView {
             switch self {
-            case .orders:
-                return AnyView(OrdersView())
+            case .requests:
+                return AnyView(LiteratureRequestsView())
             case .shipments:
                 return AnyView(ShipmentsView())
                 
@@ -114,9 +57,7 @@ extension StockroomApp {
                 )
             
             case .settings:
-                return AnyView(
-                    Text("Settings")
-                )
+                return AnyView(SettingsView())
             }
         }
         

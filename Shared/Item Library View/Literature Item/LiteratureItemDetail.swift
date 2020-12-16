@@ -48,7 +48,7 @@ struct LiteratureItemDetail: View {
                     }
                 }
                 .padding()
-                .background(Color.secondary.opacity(0.2).cornerRadius(10))
+                .background(Color.secondary.opacity(0.2).cornerRadius(Metrics.cornerRadius))
             }
         }
     }

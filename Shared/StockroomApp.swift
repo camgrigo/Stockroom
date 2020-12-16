@@ -22,9 +22,10 @@ struct StockroomApp: App {
     
     let persistenceController = PersistenceController.shared
     
-    @State private var selectedTab = Tab.orders
+    @State private var selectedTab = Tab.requests
     
     @ObservedObject var modalManager = ModalManager()
+    
     
     var body: some Scene {
         WindowGroup {

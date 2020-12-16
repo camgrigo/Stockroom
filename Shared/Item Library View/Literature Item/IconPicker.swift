@@ -7,7 +7,42 @@
 
 import SwiftUI
 
+struct Metrics {
+    
+    static let cornerRadius: CGFloat = 10
+    
+}
+
 struct IconPicker: View {
+    
+    @Environment (\.colorScheme) var colorScheme
+    
+    
+    let icons: [LiteratureItem.Icon]
+    
+    @Binding var selection: LiteratureItem.Icon
+    
+    private let columns = Array.init(repeating: GridItem(), count: 4)
+    
+    private var backgroundColor: Color {
+        Color.primary.opacity(0.1)
+    }
+    
+    var body: some View {
+        LazyVGrid(columns: columns) {
+            ForEach(icons, id: \.self) { icon in
+                IconPickerButton(icon: icon, isSelected: selection == icon) {
+                    selection = icon
+                }
+            }
+        }
+        .padding()
+        .background(backgroundColor.cornerRadius(Metrics.cornerRadius + 10))
+    }
+    
+}
+
+extension IconPicker {
     
     struct IconPickerButton: View {
         
@@ -19,7 +54,6 @@ struct IconPicker: View {
         let isSelected: Bool
         
         let action: () -> Void
-        
         
         
         private var foregroundColor: Color {
@@ -51,43 +85,21 @@ struct IconPicker: View {
                 HStack {
                     Spacer()
                     Image(systemName: isSelected ? icon.fill : icon.rawValue)
-                        .font(.title)
+                        .font({
+                            #if os(macOS)
+                            return Font.body
+                            #else
+                            return Font.title
+                            #endif
+                        }())
                         .padding(10)
                     Spacer()
                 }
             }
             .foregroundColor(isSelected ? .white : .primary)
-            .background(
-                backgroundColor.cornerRadius(10)
-            )
+            .background(backgroundColor.cornerRadius(Metrics.cornerRadius))
         }
         
-    }
-    
-    
-    @Environment (\.colorScheme) var colorScheme
-    
-    
-    let icons: [LiteratureItem.Icon]
-    
-    @Binding var selection: LiteratureItem.Icon
-    
-    private let columns = Array.init(repeating: GridItem(), count: 4)
-    
-    private var backgroundColor: Color {
-        Color.primary.opacity(0.1)
-    }
-    
-    var body: some View {
-        LazyVGrid(columns: columns) {
-            ForEach(icons, id: \.self) { icon in
-                IconPickerButton(icon: icon, isSelected: selection == icon) {
-                    selection = icon
-                }
-            }
-        }
-        .padding()
-        .background(backgroundColor.cornerRadius(20))
     }
     
 }
