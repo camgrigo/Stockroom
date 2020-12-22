@@ -31,15 +31,15 @@ struct LiteratureItemDetail: View {
     private var content: some View {
         ScrollView {
             LazyVStack {
-                LiteratureItemForm(title: $title, icon: $icon)
-                    .onDisappear {
-                        withAnimation {
-                            item.title = title
-                            item.icon = icon.rawValue
-                            
-                            PersistenceController.save(viewContext)
-                        }
-                    }
+//                LiteratureItemForm(title: $title, icon: $icon)
+//                    .onDisappear {
+//                        withAnimation {
+//                            item.title = title
+//                            item.icon = icon.rawValue
+//                            
+//                            PersistenceController.save(viewContext)
+//                        }
+//                    }
                 Button (action: confirmDelete) {
                     HStack {
                         Label("Delete", systemImage: "trash.fill")
@@ -48,7 +48,7 @@ struct LiteratureItemDetail: View {
                     }
                 }
                 .padding()
-                .background(Color.secondary.opacity(0.2).cornerRadius(Metrics.cornerRadius))
+                .background(Color.secondary.opacity(0.2).cornerRadius())
             }
         }
     }
@@ -89,9 +89,3 @@ struct LiteratureItemDetail: View {
     }
     
 }
-
-//struct LiteratureItemDetail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LiteratureItemDetail()
-//    }
-//}

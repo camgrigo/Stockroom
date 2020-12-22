@@ -12,11 +12,7 @@ struct ItemLibraryView<Cell: View>: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(
-        entity: LiteratureItem.entity(),
-        sortDescriptors: [],
-        animation: .default
-    )
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \LiteratureItem.title, ascending: true)], animation: .default)
     private var items: FetchedResults<LiteratureItem>
     
     
@@ -43,16 +39,14 @@ struct ItemLibraryView<Cell: View>: View {
                 AddButton(action: addItem)
             }
         }
-        .sheet(isPresented: $isShowingNewItemSheet) {
-            NewLiteratureItemView(isShowing: $isShowingNewItemSheet)
-        }
+//        .sheet(isPresented: $isShowingNewItemSheet) {
+//            NewLiteratureItemView(isShowing: $isShowingNewItemSheet)
+//        }
     }
     
     private var list: some View {
         List {
-            ForEach(items, id: \.self) {
-                cellProvider($0)
-            }
+            ForEach(items, id: \.self, content: cellProvider)
             .onDelete(perform: deleteItems)
         }
     }

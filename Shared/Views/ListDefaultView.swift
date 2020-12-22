@@ -63,12 +63,6 @@ struct ListDefaultView<Content: View>: View {
                     .font(Font.title3.weight(.medium))
                     .foregroundColor(foregroundColor)
                     .multilineTextAlignment(.center)
-                Text(LocalizedStringKey("Default_View_Call_To_Action"))
-                    .bold()
-                    .foregroundColor(foregroundColor)
-                    .padding()
-                    .background(Color.secondary.opacity(0.2).cornerRadius(Metrics.cornerRadius))
-                    .padding()
             }
             .padding()
         }

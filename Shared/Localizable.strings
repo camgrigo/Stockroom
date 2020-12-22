@@ -24,9 +24,10 @@
 
 "New_Request_View_Navigation_Title" = "New Request";
 "ADD_REQUEST_ITEM_BUTTON_LABEL" = "New Item";
+"NEW_REQUEST_VIEW_ITEMS_SECTION_TITLE" = "Items";
 
-"Date_Picker_Label" = "Date";
-"Is_Recurring_Toggle_Title" = "Repeat Every Month";
+"DATE_PICKER_LABEL" = "Date";
+"IS_RECURRING_TOGGLE_TITLE" = "Repeat Every Month";
 
 "Name_Text_Field_Title" = "Recipient";
 "Name_Text_Field_Description" = "Name";
@@ -34,3 +35,7 @@
 "Default_View_Call_To_Action" = "Get started";
 
 "Settings_View_Navigation_Title" = "Settings";
+
+"ICON_PICKER_LABEL" = "Icon";
+
+"QUANTITY_LABEL" = "Quantity";

@@ -9,15 +9,21 @@ import SwiftUI
 
 struct NewRequestItemView: View {
     
-    @State private var isShowingItemPicker = true
-
+    @Environment(\.managedObjectContext) var viewContext
+    
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \LiteratureItem.title, ascending: true)], animation: .default)
+    private var literatureItems: FetchedResults<LiteratureItem>
+    
+    @State private var isShowingNewItemSheet = false
+    
     private var interval: Int {
         Int(itemDraft.literatureItem?.category?.quantityPerGrouping ?? 1) // TODO: Force unwrap once category work is finished
     }
     
+    
     @ObservedObject var requestDraft: LiteratureRequestDraft
     
-    let itemDraft: RequestItemDraft
+    @ObservedObject var itemDraft: RequestItemDraft
     
     private var draftIndex: Int {
         requestDraft.items
@@ -26,12 +32,30 @@ struct NewRequestItemView: View {
     
     
     var body: some View {
-        if isShowingItemPicker {
-            LiteratureItemPicker(isShowingItemPicker: $isShowingItemPicker, draft: itemDraft)
-
+        if literatureItems.isEmpty {
+            newItemButton
         } else {
-            QuantityStepper(value: $requestDraft.items[draftIndex].quantity, step: interval)
+            Picker(itemDraft.literatureItem?.title ?? "Item", selection: $itemDraft.literatureItem) {
+                ForEach(literatureItems, content: pickerItemRow)
+            }
         }
+        
+        QuantityStepper(value: $requestDraft.items[draftIndex].quantity, step: interval)
+    }
+    
+    private var newItemButton: some View {
+        Button {
+            isShowingNewItemSheet = true
+        } label: {
+            Label("NEW_LITERATURE_ITEM_FORM_TITLE", systemImage: "plus")
+        }
+        .sheet(isPresented: $isShowingNewItemSheet) {
+            NewLiteratureItemSheet(isShowing: $isShowingNewItemSheet)
+        }
+    }
+    
+    private func pickerItemRow(item: LiteratureItem) -> some View {
+        Text(item.title!)
     }
     
 }

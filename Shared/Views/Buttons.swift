@@ -31,7 +31,7 @@ struct RoundedButtonStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding()
-            .background(color.cornerRadius(Metrics.cornerRadius))
+            .background(color.cornerRadius())
     }
     
 }

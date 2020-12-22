@@ -11,16 +11,18 @@ struct StockroomTabView: View {
     
     var body: some View {
         TabView {
-            ForEach(StockroomApp.Tab.allCases, id: \.self) { tab in
-                NavigationView {
-                    tab.view
-                }
-                .tabItem {
-                    Group {
-                        Image(systemName: tab.systemImage)
-                        Text(tab.title)
-                    }
-                }
+            ForEach(StockroomApp.Tab.allCases, id: \.self, content: tab)
+        }
+    }
+    
+    private func tab(tab: StockroomApp.Tab) -> some View {
+        NavigationView {
+            tab.view
+        }
+        .tabItem {
+            Group {
+                Image(systemName: tab.systemImage)
+                Text(tab.title)
             }
         }
     }
@@ -28,7 +30,9 @@ struct StockroomTabView: View {
 }
 
 struct StockroomTabView_Previews: PreviewProvider {
+    
     static var previews: some View {
         StockroomTabView()
     }
+    
 }

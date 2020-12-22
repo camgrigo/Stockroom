@@ -26,11 +26,7 @@ struct LiteratureRequestsView: View {
     @EnvironmentObject private var modalManager: ModalManager
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(
-        entity: LiteratureRequest.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \LiteratureRequest.date, ascending: true)],
-        animation: .default
-    )
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \LiteratureRequest.date, ascending: true)], animation: .default)
     private var requests: FetchedResults<LiteratureRequest>
     
     

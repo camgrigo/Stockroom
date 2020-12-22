@@ -10,25 +10,13 @@ import CoreData
 
 struct SidebarView: View {
     
-    @FetchRequest(
-        entity: LiteratureRequest.entity(),
-        sortDescriptors: [],
-        animation: .default
-    )
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \LiteratureRequest.date, ascending: true)], animation: .default)
     private var literatureRequests: FetchedResults<LiteratureRequest>
     
-    @FetchRequest(
-        entity: LiteratureItem.entity(),
-        sortDescriptors: [],
-        animation: .default
-    )
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \LiteratureItem.title, ascending: true)], animation: .default)
     private var literatureItems: FetchedResults<LiteratureItem>
     
-    @FetchRequest(
-        entity: Shipment.entity(),
-        sortDescriptors: [],
-        animation: .default
-    )
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Shipment.trackingNumber, ascending: true)], animation: .default)
     private var shipments: FetchedResults<Shipment>
     
     
@@ -69,7 +57,7 @@ struct SidebarView: View {
                 if tab == selectedTab {
                     row(tab: tab, detailColor: .white)
                         .foregroundColor(.white)
-                        .background(Color.blue.cornerRadius(Metrics.cornerRadius))
+                        .background(Color.blue.cornerRadius())
                     
                 } else {
                     row(tab: tab, detailColor: .secondary)
