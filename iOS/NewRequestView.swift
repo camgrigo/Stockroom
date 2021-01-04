@@ -23,10 +23,6 @@ struct NewRequestView: View {
     
     @ObservedObject private var draft = LiteratureRequestDraft()
     
-    private var isValid: Bool {
-        !draft.items.isEmpty && draft.items.allSatisfy { $0.literatureItem != nil }
-    }
-    
     private let navigationTitle: LocalizedStringKey = "New_Request_View_Navigation_Title"
     
     private var itemsSectionHeader: some View {
@@ -39,13 +35,13 @@ struct NewRequestView: View {
             form
                 .navigationTitle(navigationTitle)
                 .toolbar {
-                    FormToolbar(canSubmit: isValid) {
+                    FormToolbar(canSubmit: draft.isValid) {
                         isShowing = false
                     } done: {
                         isShowing = false
                         
                         withAnimation {
-                            //                            draft.commit(context: viewContext)
+                            draft.commit()
                         }
                     }
                 }
@@ -60,8 +56,6 @@ struct NewRequestView: View {
                 Image(systemName: "plus")
                 Text(.newRequestItemAddButtonLabel)
             }
-//            .padding()
-//            .background(RoundedRectangle(cornerRadius: Metrics.cornerRadius).stroke(Color.blue))
         }
     }
     
@@ -69,13 +63,13 @@ struct NewRequestView: View {
         List {
             Section {
                 RecipientRow(text: $draft.recipient)
-                DatePicker(LocalizedStringKey("DATE_PICKER_LABEL"), selection: $draft.date)
+                DatePicker(LocalizedStringKey("DATE_PICKER_LABEL"), selection: $draft.date, displayedComponents: .date)
                 Toggle(LocalizedStringKey("IS_RECURRING_TOGGLE_TITLE"), isOn: $draft.isRecurring)
             }
             
             ForEach(draft.items) { itemDraft in
                 Section {
-                    NewRequestItemView(requestDraft: draft, itemDraft: itemDraft)
+                    itemView(itemDraft: itemDraft)
                 }
             }
             
@@ -86,6 +80,13 @@ struct NewRequestView: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
+    }
+    
+    private func itemView(itemDraft: RequestItemDraft) -> some View {
+        NewRequestItemView(requestDraft: draft, itemDraft: itemDraft, delete: {
+            draft.items.remove(at: draft.items.firstIndex { $0.literatureItem == itemDraft.literatureItem }!)
+        })
+            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
     
 }

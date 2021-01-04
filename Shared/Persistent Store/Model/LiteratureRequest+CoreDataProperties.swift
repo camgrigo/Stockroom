@@ -2,7 +2,7 @@
 //  LiteratureRequest+CoreDataProperties.swift
 //  Stockroom
 //
-//  Created by Cameron Grigoriadis on 12/11/20.
+//  Created by Cameron Grigoriadis on 12/22/20.
 //
 //
 
@@ -21,6 +21,15 @@ extension LiteratureRequest {
     @NSManaged public var recipient: String?
     @NSManaged public var items: NSSet?
 
+}
+
+extension LiteratureRequest {
+    
+    public var itemsArray: [LiteratureRequestItem] {
+        (items as? Set<LiteratureRequestItem> ?? [])
+            .sorted { $0.literatureItem.title! < $1.literatureItem.title! }
+    }
+    
 }
 
 // MARK: Generated accessors for items

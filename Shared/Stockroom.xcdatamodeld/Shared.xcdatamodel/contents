@@ -8,6 +8,7 @@
         <attribute name="colorData" optional="YES" attributeType="Binary"/>
         <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="language" optional="YES" attributeType="String"/>
         <attribute name="symbol" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LiteratureItemCategory" inverseName="items" inverseEntity="LiteratureItemCategory"/>
@@ -42,7 +43,7 @@
     </entity>
     <elements>
         <element name="Delivery" positionX="-4.48956298828125" positionY="139.85498046875" width="128" height="73"/>
-        <element name="LiteratureItem" positionX="371.5814208984375" positionY="258.0370178222656" width="128" height="163"/>
+        <element name="LiteratureItem" positionX="371.5814208984375" positionY="258.0370178222656" width="128" height="164"/>
         <element name="LiteratureItemCategory" positionX="372.6265258789063" positionY="449.8099670410156" width="128" height="88"/>
         <element name="LiteratureRequest" positionX="180.9912719726562" positionY="3.209930419921875" width="128" height="103"/>
         <element name="LiteratureRequestItem" positionX="181.3441772460937" positionY="141.3742370605468" width="128" height="103"/>

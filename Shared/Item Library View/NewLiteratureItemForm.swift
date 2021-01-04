@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-extension View {
-    
-    func iOS<T: View>(_ modifier: (Self) -> T) -> T {
-        #if os(iOS)
-        return modifier(self)
-        #else
-        return self
-        #endif
-    }
-    
-}
-
 struct NewLiteratureItemForm: View {
     
     @Binding var title: String
@@ -26,14 +14,23 @@ struct NewLiteratureItemForm: View {
     @Binding var icon: LiteratureItem.Icon
     
     
-    private let itemTitleFont = Font.title3.italic()
+    private struct Font {
+        static let itemTitle = SwiftUI.Font.title3
+    }
     
     
     var body: some View {
         List {
-            TextField("Title", text: $title)
-                .font(itemTitleFont)
-                .iOS { $0.autocapitalization(.words) }
+            HStack {
+                if !title.isEmpty {
+                    Text(LocalizedStringKey("NEW_LITERATURE_ITEM_FORM_TITLE_FIELD_TITLE"))
+                        .font(Font.itemTitle.bold())
+                }
+                TextField(LocalizedStringKey("NEW_LITERATURE_ITEM_FORM_TITLE_FIELD_TITLE"), text: $title)
+                    .font(Font.itemTitle.italic())
+                    .iOS { $0.autocapitalization(.words) }
+            }
+            .padding(.vertical)
             
             IconPicker(icons: LiteratureItem.Icon.allCases, selection: $icon)
         }
@@ -41,27 +38,6 @@ struct NewLiteratureItemForm: View {
     
 }
 
-//
-//struct NewLiteratureItemView: View {
-//    
-//    @Environment(\.managedObjectContext) private var viewContext
-//    
-//    @Binding var isShowing: Bool
-//    
-//    private let navigationTitle: LocalizedStringKey = "NEW_LITERATURE_ITEM_FORM_TITLE"
-//    
-//
-//    
-//    
-//    var body: some View {
-//        NavigationView {
-//            LiteratureItemForm(title: $title, icon: $icon)
-//        }
-//    }
-//    
-//    
-//    
-//}
 //
 //struct NewLiteratureItemForm: View {
 //    

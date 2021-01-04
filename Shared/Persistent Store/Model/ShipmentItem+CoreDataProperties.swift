@@ -2,7 +2,7 @@
 //  ShipmentItem+CoreDataProperties.swift
 //  Stockroom
 //
-//  Created by Cameron Grigoriadis on 12/11/20.
+//  Created by Cameron Grigoriadis on 12/22/20.
 //
 //
 
@@ -17,7 +17,7 @@ extension ShipmentItem {
     }
 
     @NSManaged public var quantity: Int32
-    @NSManaged public var shipment: Shipment?
     @NSManaged public var item: LiteratureItem?
+    @NSManaged public var shipment: Shipment?
 
 }

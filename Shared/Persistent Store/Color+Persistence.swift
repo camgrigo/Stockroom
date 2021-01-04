@@ -46,6 +46,8 @@ extension LiteratureItem {
             nativeColor.getRed(&r, green: &g, blue: &b, alpha: &a)
             if let encoded = try? JSONEncoder().encode(ColorData(r: Double(r), g: Double(g), b: Double(b), a: Double(a))) {
                 colorData = encoded
+            } else {
+                colorData = nil
             }
         }
     }

@@ -15,6 +15,7 @@
 "Item_Library_View_Default_Description" = "Add items to your library to add them to requests and shipments";
 
 "NEW_LITERATURE_ITEM_FORM_TITLE" = "New Item";
+"NEW_LITERATURE_ITEM_FORM_TITLE_FIELD_TITLE" = "Title";
 
 "Shipments_View_Navigation_Title" = "Shipments";
 "Shipments_View_Default_Description" = "Plan out deliveries";

@@ -32,3 +32,5 @@ extension LiteratureItem {
     }
     
 }
+
+extension LiteratureItem: Identifiable {}

@@ -17,13 +17,14 @@ struct LiteratureRequestRow: View {
     
     private func itemComponent(count: Int, title: String) -> some View {
         HStack(alignment: .center, spacing: 8) {
-            Text(title).font(.headline)
-                Text("\(count)")
-                    .font(Font.system(.footnote, design: .rounded).weight(.heavy))
-                    .padding(.horizontal, 7)
-                    .padding(.vertical, 3)
-                    .foregroundColor(.background(colorScheme: colorScheme))
-                .background(Color.primary.cornerRadius(20))
+            Text("Test")
+//            Text(title).font(.headline)
+//                Text("\(count)")
+//                    .font(Font.system(.footnote, design: .rounded).weight(.heavy))
+//                    .padding(.horizontal, 7)
+//                    .padding(.vertical, 3)
+//                    .foregroundColor(.background(colorScheme: colorScheme))
+//                .background(Color.primary.cornerRadius(20))
         }
     }
     
@@ -40,7 +41,6 @@ struct LiteratureRequestRow: View {
     
     var body: some View {
         VStack {
-            Text("Request")
 //            ForEach(request.items!, id: \.self) { order in
 //                LazyVGrid(columns: columns, alignment: .leading, spacing: 10) {
 //                    if grouping != .item {
@@ -59,14 +59,3 @@ struct LiteratureRequestRow: View {
     }
     
 }
-
-//struct OrderRow_Previews: PreviewProvider {
-//
-//    static let managedObjectContext = PersistenceController.preview.container.viewContext
-//
-//    static var previews: some View {
-//        LiteratureRequestRow(order: try! managedObjectContext.fetch(LiteratureRequest.fetchRequest()).first!)
-//            .environment(\.grouping, OrdersView.Grouping.requestDate)
-//            .previewLayout(.fixed(width: 400, height: 120))
-//    }
-//}

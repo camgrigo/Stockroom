@@ -16,20 +16,33 @@ final class LiteratureRequestDraft: ObservableObject, Identifiable {
     
     @Published var recipient = String()
     
-    @Published var items = [
-        RequestItemDraft()
-    ]
+    @Published var items = [RequestItemDraft]()
     
     
-//    func commit(context: NSManagedObjectContext) {
-//        let request = LiteratureRequest(context: context)
-//        
-//        request.date = date
-//        request.recipient = recipient
-//        request.isRecurring = isRecurring
-//        
-//        PersistenceController.save(context)
-//    }
+    var isValid: Bool {
+        !items.isEmpty && items.allSatisfy { $0.literatureItem != nil }
+    }
+    
+    
+    func commit() {
+        let context = PersistenceController.shared.container.viewContext
+
+        let request = LiteratureRequest(context: context)
+        
+        request.date = date
+        request.recipient = recipient
+        request.isRecurring = isRecurring
+        
+        items.forEach { item in
+            let requestItem = LiteratureRequestItem(context: context)
+
+            requestItem.quantity = Int32(item.quantity)
+            requestItem.item = context.object(with: item.literatureItem!.objectID) as? LiteratureItem
+            requestItem.request = request
+        }
+        
+        PersistenceController.save(context)
+    }
     
 }
 
@@ -38,19 +51,5 @@ final class RequestItemDraft: ObservableObject, Identifiable {
     @Published var quantity = 1
 
     @Published var literatureItem: LiteratureItem?
-    
-    
-//    func commit(context: NSManagedObjectContext) {
-//        let request = LiteratureRequest(context: context)
-//
-//        let order = LiteratureRequestItem(context: context)
-//
-//        order.quantity = Int32(quantity)
-//        order.item = literatureItem!
-//
-//        request.items.append(order)
-//
-//        PersistenceController.save(context)
-//    }
     
 }
